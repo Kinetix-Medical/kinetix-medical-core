@@ -1,0 +1,163 @@
+/* =========================================================
+   KINETIX CLINICAL OS
+   Main Custom Styles
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: #020617;
+    color: #f1f5f9;
+}
+
+/* Monospace text */
+.font-mono-code {
+    font-family: "JetBrains Mono", monospace;
+}
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #06b6d4;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+header button {
+    cursor: pointer;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select,
+button {
+    font-family: inherit;
+}
+
+input::placeholder {
+    color: #475569;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+table {
+    border-collapse: collapse;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* =========================================================
+   AUDIT MODAL
+   ========================================================= */
+
+#auditModal {
+    transition: opacity 0.2s ease;
+}
+
+#auditModal.hidden {
+    display: none;
+}
+
+/* =========================================================
+   INVOICE RESULT
+   ========================================================= */
+
+#invoiceResult {
+    transition: all 0.25s ease;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVENESS
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    main {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    table {
+        min-width: 700px;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE SCREENS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    header span {
+        letter-spacing: 0.02em;
+    }
+
+    input,
+    select {
+        font-size: 13px;
+    }
+}

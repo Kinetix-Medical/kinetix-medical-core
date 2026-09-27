@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kinetix Medical Platform</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        header {
+            background: #0f2747;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: #b9c7d9;
+            margin-top: 4px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #54c7d9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            font-size: 28px;
+            color: #0f2747;
+        }
+
+        .welcome p {
+            color: #64748b;
+            margin-top: 7px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .card .number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #0f2747;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            color: #0f2747;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1597b5;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        button {
+            background: #0f8ba8;
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #096f88;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 13px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .invoice-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .invoice-box p {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: #0f2747;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 5px;
+        }
+
+        .error-message {
+            color: #b91c1c;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <h1>KINETIX</h1>
+        <p>Medical Healthcare Platform</p>
+    </div>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#patients">Patients</a>
+        <a href="#billing">Billing</a>
+        <a href="#audit">Audit Logs</a>
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <section class="welcome" id="dashboard">
+
+        <h2>Healthcare Management Dashboard</h2>
+
+        <p>
+            Manage patients, medical records, billing and system activity
+            from one centralized platform.
+        </p>
+
+    </section>
+
+
+    <section class="cards">
+
+        <div class="card">
+            <h3>Total Patients</h3>
+            <div class="number" id="totalPatients">0</div>
+        </div>
+
+        <div class="card">
+            <h3>Today's Registrations</h3>
+            <div class="number" id="todayPatients">0</div>
+        </div>
+
+        <div class="card">
+            <h3>Invoices</h3>
+            <div class="number" id="totalInvoices">0</div>
+        </div>
+
+        <div class="card">
+            <h3>System Status</h3>
+
+            <div class="number" style="font-size:20px;">
+                <span class="status" id="systemStatus">
+                    Checking...
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PATIENT REGISTRATION -->
+
+    <section class="section" id="patients">
+
+        <h2>Patient Registration</h2>
+
+        <form id="patientForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter patient's full name"
+                        required
+                        maxlength="200"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="age">
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Enter age"
+                        min="0"
+                        max="150"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="gender">
+                        Gender
+                    </label>
+
+                    <select id="gender" required>
+
+                        <option value="">
+                            Select Gender
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="modality">
+                        Medical Modality
+                    </label>
+
+                    <select id="modality" required>
+
+                        <option value="">
+                            Select Modality
+                        </option>
+
+                        <option value="General Consultation">
+                            General Consultation
+                        </option>
+
+                        <option value="X-Ray">
+                            X-Ray
+                        </option>
+
+                        <option value="CT Scan">
+                            CT Scan
+                        </option>
+
+                        <option value="MRI">
+                            MRI
+                        </option>
+
+                        <option value="Ultrasound">
+                            Ultrasound
+                        </option>
+
+                        <option value="Laboratory">
+                            Laboratory
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="full-width">
+
+                    <button type="submit">
+                        Register Patient
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+        <div id="patientError" class="error-message"></div>
+
+    </section>
+
+
+    <!-- PATIENT RECORDS -->
+
+    <section class="section">
+
+        <h2>Patient Records</h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>MRN</th>
+                        <th>Patient</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Modality</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="patientTableBody">
+
+                    <tr>
+                        <td colspan="6">
+                            Loading patient records...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- BILLING -->
+
+    <section class="section" id="billing">
+
+        <h2>Medical Billing</h2>
+
+        <p style="color:#64748b; margin-bottom:15px;">
+            Create a test medical invoice through the KINETIX backend.
+        </p>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label for="billMrn">
+                    Patient MRN
+                </label>
+
+                <input
+                    type="text"
+                    id="billMrn"
+                    placeholder="Example: MRN-20260925-101"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="billName">
+                    Patient Name
+                </label>
+
+                <input
+                    type="text"
+                    id="billName"
+                    placeholder="Patient name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="billAmount">
+                    Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="billAmount"
+                    placeholder="Enter amount"
+                    min="0"
+                    step="0.01"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    &nbsp;
+                </label>
+
+                <button
+                    type="button"
+                    onclick="createInvoice()"
+                >
+                    Create Invoice
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="invoiceResult"
+            class="invoice-box"
+        >
+
+            <h3 style="color:#0f2747; margin-bottom:15px;">
+                Invoice Created
+            </h3>
+
+            <p>
+                <strong>Invoice ID:</strong>
+                <span id="outInvId"></span>
+            </p>
+
+            <p>
+                <strong>Patient:</strong>
+                <span id="outName"></span>
+            </p>
+
+            <p>
+                <strong>MRN:</strong>
+                <span id="outMrn"></span>
+            </p>
+
+            <p>
+                <strong>Subtotal:</strong>
+                $<span id="outSub"></span>
+            </p>
+
+            <p>
+                <strong>Tax:</strong>
+                $<span id="outTax"></span>
+            </p>
+
+            <p>
+                <strong>Total:</strong>
+                $<span id="outTotal"></span>
+            </p>
+
+            <p>
+                <strong>Digital Signature:</strong>
+                <span id="outSig"></span>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- AUDIT LOGS -->
+
+    <section class="section" id="audit">
+
+        <h2>System Audit Logs</h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Time</th>
+                        <th>Event</th>
+                        <th>Details</th>
+                        <th>IP Address</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="auditTableBody">
+
+                    <tr>
+                        <td colspan="4">
+                            Loading audit logs...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Kinetix Medical Platform © 2026
+    </p>
+
+    <p>
+        Healthcare Management System
+    </p>
+
+</footer>
+
+
+<script>
+
+const API_BASE = "api.php";
+
+
+/* SECURITY: DISPLAY TEXT SAFELY */
+
+function escapeHTML(value) {
+
+    const div = document.createElement("div");
+
+    div.textContent = value ?? "";
+
+    return div.innerHTML;
+}
+
+
+/* SYSTEM HEALTH */
+
+async function checkSystemHealth() {
+
+    const status =
+        document.getElementById("systemStatus");
+
+    try {
+
+        const response =
+            await fetch(`${API_BASE}/health`);
+
+        const result =
+            await response.json();
+
+        if (result.status === "OPERATIONAL") {
+
+            status.textContent = "Operational";
+
+        } else {
+
+            status.textContent = "Unavailable";
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Health check failed:",
+            error
+        );
+
+        status.textContent = "Offline";
+
+    }
+
+}
+
+
+/* LOAD PATIENTS */
+
+async function loadPatients() {
+
+    try {
+
+        const response =
+            await fetch(`${API_BASE}/patients`);
+
+        const result =
+            await response.json();
+
+        if (!result.success) {
+
+            throw new Error(
+                "Unable to load patients."
+            );
+
+        }
+
+
+        const patients =
+            result.data || [];
+
+        const table =
+            document.getElementById(
+                "patientTableBody"
+            );
+
+
+        table.innerHTML = "";
+
+
+        if (patients.length === 0) {
+
+            table.innerHTML = `
+                <tr>
+                    <td colspan="6">
+                        No patient records available.
+                    </td>
+                </tr>
+            `;
+
+        }
+
+
+        patients.forEach(patient => {
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${escapeHTML(patient.mrn)}
+                </td>
+
+                <td>
+                    ${escapeHTML(patient.masked_name)}
+                </td>
+
+                <td>
+                    ${escapeHTML(patient.age)}
+                </td>
+
+                <td>
+                    ${escapeHTML(patient.gender)}
+                </td>
+
+                <td>
+                    ${escapeHTML(patient.modality)}
+                </td>
+
+                <td>
+                    <span class="status">
+                        Registered
+                    </span>
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        });
+
+
+        document.getElementById(
+            "totalPatients"
+        ).textContent = patients.length;
+
+
+        const today =
+            new Date()
+            .toISOString()
+            .slice(0, 10);
+
+
+        const todayCount =
+            patients.filter(patient => {
+
+                return patient.id &&
+                    new Date(patient.id)
+                    .toISOString()
+                    .slice(0, 10) === today;
+
+            }).length;
+
+
+        document.getElementById(
+            "todayPatients"
+        ).textContent = todayCount;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Patient loading error:",
+            error
+        );
+
+        document.getElementById(
+            "patientTableBody"
+        ).innerHTML = `
+            <tr>
+                <td colspan="6">
+                    Medical backend could not be reached.
+                </td>
+            </tr>
+        `;
+
+    }
+
+}
+
+
+/* REGISTER PATIENT */
+
+async function registerPatient(event) {
+
+    event.preventDefault();
+
+
+    const fullName =
+        document.getElementById(
+            "fullName"
+        ).value.trim();
+
+
+    const age =
+        document.getElementById(
+            "age"
+        ).value;
+
+
+    const gender =
+        document.getElementById(
+            "gender"
+        ).value;
+
+
+    const modality =
+        document.getElementById(
+            "modality"
+        ).value;
+
+
+    const errorBox =
+        document.getElementById(
+            "patientError"
+        );
+
+
+    errorBox.textContent = "";
+
+
+    if (
+        !fullName ||
+        !age ||
+        !gender ||
+        !modality
+    ) {
+
+        errorBox.textContent =
+            "Please complete all patient information.";
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE}/patients`,
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        full_name:
+                            fullName,
+
+                        age:
+                            age,
+
+                        gender:
+                            gender,
+
+                        modality:
+                            modality
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            throw new Error(
+                result.message ||
+                "Patient registration failed."
+            );
+
+        }
+
+
+        alert(
+            `Patient registered successfully.\nMRN: ${result.mrn}`
+        );
+
+
+        document
+            .getElementById(
+                "patientForm"
+            )
+            .reset();
+
+
+        await loadPatients();
+
+        await loadAuditLogs();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Registration error:",
+            error
+        );
+
+        alert(
+            "The medical backend could not be reached. Make sure the KINETIX server is running."
+        );
+
+    }
+
+}
+
+
+/* CREATE BILLING */
+
+async function createInvoice() {
+
+    const mrn =
+        document.getElementById(
+            "billMrn"
+        ).value.trim();
+
+
+    const name =
+        document.getElementById(
+            "billName"
+        ).value.trim();
+
+
+    const amount =
+        document.getElementById(
+            "billAmount"
+        ).value;
+
+
+    if (!mrn || !name || !amount) {
+
+        alert(
+            "Please enter MRN, patient name and amount."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE}/billing/create`,
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        patient_mrn:
+                            mrn,
+
+                        patient_name:
+                            name,
+
+                        amount:
+                            amount
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            throw new Error(
+                result.message ||
+                "Billing failed."
+            );
+
+        }
+
+
+        const invoice =
+            result.invoice;
+
+
+        document.getElementById(
+            "invoiceResult"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "outInvId"
+        ).textContent =
+            invoice.invoice_id;
+
+
+        document.getElementById(
+            "outName"
+        ).textContent =
+            invoice.patient_name;
+
+
+        document.getElementById(
+            "outMrn"
+        ).textContent =
+            invoice.patient_mrn;
+
+
+        document.getElementById(
+            "outSub"
+        ).textContent =
+            invoice.subtotal;
+
+
+        document.getElementById(
+            "outTax"
+        ).textContent =
+            invoice.tax;
+
+
+        document.getElementById(
+            "outTotal"
+        ).textContent =
+            invoice.total_amount;
+
+
+        document.getElementById(
+            "outSig"
+        ).textContent =
+            invoice.digital_signature;
+
+
+        document.getElementById(
+            "totalInvoices"
+        ).textContent = "1";
+
+
+        await loadAuditLogs();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Billing error:",
+            error
+        );
+
+        alert(
+            "The medical billing backend could not be reached."
+        );
+
+    }
+
+}
+
+
+/* LOAD AUDIT LOGS */
+
+async function loadAuditLogs() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE}/audit-logs`
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            throw new Error(
+                "Unable to load audit logs."
+            );
+
+        }
+
+
+        const logs =
+            result.data || [];
+
+
+        const table =
+            document.getElementById(
+                "auditTableBody"
+            );
+
+
+        table.innerHTML = "";
+
+
+        if (logs.length === 0) {
+
+            table.innerHTML = `
+                <tr>
+                    <td colspan="4">
+                        No audit logs available.
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
+
+
+        logs.forEach(log => {
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${escapeHTML(log.timestamp)}
+                </td>
+
+                <td>
+                    ${escapeHTML(log.event_type)}
+                </td>
+
+                <td>
+                    ${escapeHTML(log.details)}
+                </td>
+
+                <td>
+                    ${escapeHTML(log.ip_address)}
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Audit log error:",
+            error
+        );
+
+        document.getElementById(
+            "auditTableBody"
+        ).innerHTML = `
+            <tr>
+                <td colspan="4">
+                    Medical backend could not be reached.
+                </td>
+            </tr>
+        `;
+
+    }
+
+}
+
+
+/* START KINETIX */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        document
+            .getElementById(
+                "patientForm"
+            )
+            .addEventListener(
+                "submit",
+                registerPatient
+            );
+
+
+        checkSystemHealth();
+
+        loadPatients();
+
+        loadAuditLogs();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
